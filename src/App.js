@@ -1,24 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  BrowserRouter,
+  Route,
+  RouterProvider,
+  Routes,
+  createBrowserRouter,
+  useNavigate,
+} from "react-router-dom";
+import "./App.css";
+import Home from "./components/home";
+import Blogs from "./components/blogs";
+import BlogDetails from "./components/blogs/blogDetails";
+
+// browserrouter
+// routes
+// route
 
 function App() {
+  const routeData = [
+    {
+      path: "/",
+      element: <Home />,
+    },
+    {
+      path: "/blog",
+      element: <Blogs />,
+    },
+    {
+      path: "/blog/blogdetails",
+      element: <BlogDetails />,
+    },
+  ];
+  const router = createBrowserRouter(routeData);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    // <RouterProvider router={router} />
+    <BrowserRouter>
+      <Routes>
+        {routeData.map((el) => {
+          return <Route path={el.path} element={el.element} key={el.path} />;
+        })}
+        {/* <Route path="/" element={<Home />} />
+        <Route path="/blog" element={<Blogs />} />
+        <Route path="/blog/blogdetails" element={<BlogDetails />} /> */}
+      </Routes>
+    </BrowserRouter>
   );
 }
 
