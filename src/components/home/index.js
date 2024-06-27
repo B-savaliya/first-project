@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../../common/components/button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 
 function Home() {
   const navigate = useNavigate()
@@ -18,6 +18,7 @@ function Home() {
           click
         </button>
       {/* </Link> */}
+      <Outlet />
     </div>
   );
 }

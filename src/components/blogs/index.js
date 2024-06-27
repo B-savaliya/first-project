@@ -1,11 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 function Blogs() {
   return (
     <div>
       This is blog page
-      <Link to={"/blog/blogdetails"}>To blog details</Link>
+      <Link to={"/blog/ksjlfdjkldsfkjlsdfjklsdfslkjdf"}>To blog details</Link>
+      <Outlet />
     </div>
   );
 }

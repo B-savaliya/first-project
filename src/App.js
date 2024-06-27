@@ -1,25 +1,32 @@
-import {
-  BrowserRouter,
-  Route,
-  RouterProvider,
-  Routes,
-  createBrowserRouter,
-  useNavigate,
-} from "react-router-dom";
+// // new routing
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./App.css";
-import Home from "./components/home";
+import Layout from "./components/home";
 import Blogs from "./components/blogs";
 import BlogDetails from "./components/blogs/blogDetails";
-
-// browserrouter
-// routes
-// route
+import ContactUs from "./components/contactus";
 
 function App() {
   const routeData = [
     {
       path: "/",
-      element: <Home />,
+      element: <Layout />,
+      children: [
+        {
+          path: "blog",
+          element: <Blogs />,
+          children: [
+            {
+              path: ":id",
+              element: <BlogDetails />,
+            },
+          ],
+        },
+        {
+          path: "contactus",
+          element: <ContactUs />,
+        },
+      ],
     },
     {
       path: "/blog",
@@ -31,19 +38,34 @@ function App() {
     },
   ];
   const router = createBrowserRouter(routeData);
-  return (
-    // <RouterProvider router={router} />
-    <BrowserRouter>
-      <Routes>
-        {routeData.map((el) => {
-          return <Route path={el.path} element={el.element} key={el.path} />;
-        })}
-        {/* <Route path="/" element={<Home />} />
-        <Route path="/blog" element={<Blogs />} />
-        <Route path="/blog/blogdetails" element={<BlogDetails />} /> */}
-      </Routes>
-    </BrowserRouter>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
+
+// Old routing
+// import { BrowserRouter, Route, Routes } from "react-router-dom";
+// import "./App.css";
+// import Layout from "./components/home";
+// import Blogs from "./components/blogs";
+// import BlogDetails from "./components/blogs/blogDetails";
+
+// // browserrouter
+// // routes
+// // route
+
+// function App() {
+//   return (
+//     <BrowserRouter>
+//       <Routes>
+//         <Route path={"/"} element={<Layout />}>
+//           <Route path={"blog"} element={<Blogs />}>
+//             <Route path={"blogdetails"} element={<BlogDetails />} />;
+//           </Route>
+//         </Route>
+//       </Routes>
+//     </BrowserRouter>
+//   );
+// }
+
+// export default App;
