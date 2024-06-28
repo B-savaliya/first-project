@@ -15,12 +15,10 @@ function App() {
         {
           path: "blog",
           element: <Blogs />,
-          children: [
-            {
-              path: ":id",
-              element: <BlogDetails />,
-            },
-          ],
+        },
+        {
+          path: "blog/:id/category/:categoryId",
+          element: <BlogDetails />,
         },
         {
           path: "contactus",
@@ -63,6 +61,8 @@ export default App;
 //             <Route path={"blogdetails"} element={<BlogDetails />} />;
 //           </Route>
 //         </Route>
+//         <Route path={"/blog/:id/category/:categoryId"} element={<BlogDetails />}>
+
 //       </Routes>
 //     </BrowserRouter>
 //   );
