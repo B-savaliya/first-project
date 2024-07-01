@@ -25,6 +25,7 @@ export const blogData = [
     id: 1,
     text: "blog 1",
     categoryId: "cloths",
+    comp: <div>test</div>
   },
   {
     id: 2,

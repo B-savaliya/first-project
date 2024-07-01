@@ -11,6 +11,9 @@ function Blogs() {
           return (
             <Link to={`/blog/${el.id}/category/${el.categoryId}`}>
               {el.text} <br />
+              <h2>Heading</h2>
+              <p>Description</p>
+              <span>{el.comp}</span>
             </Link>
           );
         })}

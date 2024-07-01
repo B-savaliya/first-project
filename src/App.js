@@ -6,6 +6,11 @@ import Blogs from "./components/blogs";
 import BlogDetails from "./components/blogs/blogDetails";
 import ContactUs from "./components/contactus";
 
+// Lifecycle of components
+// Mounting // On Load
+// Updating // On update
+// Unmounting // On unload
+
 function App() {
   const routeData = [
     {
