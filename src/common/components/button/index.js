@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
-function Button() {
+function Button(props) {
   return (
-    <button>Click me</button>
-  )
+    <button style={{ backgroundColor: props.color || "cyan" }}>
+      {props.title || "Click me"}
+    </button>
+  );
 }
 
-export default Button
+export default Button;

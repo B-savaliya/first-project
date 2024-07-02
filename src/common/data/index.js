@@ -20,12 +20,14 @@
 // Graphql
 // Test cases
 
+import ContactUs from "../../components/contactus";
+
 export const blogData = [
   {
     id: 1,
     text: "blog 1",
     categoryId: "cloths",
-    comp: <div>test</div>
+    comp: <ContactUs />
   },
   {
     id: 2,

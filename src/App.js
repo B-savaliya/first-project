@@ -5,13 +5,21 @@ import Layout from "./components/home";
 import Blogs from "./components/blogs";
 import BlogDetails from "./components/blogs/blogDetails";
 import ContactUs from "./components/contactus";
+import { blogData } from "./common/data";
+import Parent from "./components/parent";
 
 // Lifecycle of components
 // Mounting // On Load
 // Updating // On update
 // Unmounting // On unload
 
+// Props
+// State
+
 function App() {
+  const parentData = blogData;
+  const test = false;
+
   const routeData = [
     {
       path: "/",
@@ -19,17 +27,21 @@ function App() {
       children: [
         {
           path: "blog",
-          element: <Blogs />,
+          element: <Blogs blogData={parentData} />,
         },
         {
           path: "blog/:id/category/:categoryId",
-          element: <BlogDetails />,
+          element: <BlogDetails test={parentData} />,
         },
         {
           path: "contactus",
-          element: <ContactUs />,
+          element: <ContactUs data={parentData} isApp />,
         },
       ],
+    },
+    {
+      path: "/parent",
+      element: <Parent />,
     },
     {
       path: "/blog",

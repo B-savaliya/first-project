@@ -1,15 +1,17 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import { blogData } from "../../common/data";
+import ContactUs from "../contactus";
 
-function Blogs() {
+function Blogs(props, dataFromContactus) {
+  // console.log("props*****", props);
   return (
     <>
       <div>
         To blog details: <br />
-        {blogData.map((el) => {
+        {blogData.map((el, i) => {
           return (
-            <Link to={`/blog/${el.id}/category/${el.categoryId}`}>
+            <Link to={`/blog/${i + 1}/category/${el.categoryId}`}>
               {el.text} <br />
               <h2>Heading</h2>
               <p>Description</p>
@@ -17,6 +19,7 @@ function Blogs() {
             </Link>
           );
         })}
+        <ContactUs isApp={false} />
       </div>
       <Outlet />
     </>

@@ -2,9 +2,9 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { blogData } from "../../../common/data";
 
-function BlogDetails() {
+function BlogDetails(props) {
   const param = useParams();
-  console.log("param*******", param);
+  console.log("props*******", props);
 
   const selectedBlog = blogData.find((el) => el.id == param.id);
 
@@ -12,6 +12,7 @@ function BlogDetails() {
     <div>
       This is blog details page and this one is the current blog:{" "}
       {selectedBlog.text}
+      {selectedBlog.comp}
     </div>
   );
 }
