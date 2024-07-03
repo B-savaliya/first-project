@@ -1,0 +1,21 @@
+@import "../../style/main.scss";
+
+.notification{
+    padding:0 20px;
+    .notification-right-grid{
+        margin-top: 75px;
+        @media (max-width:576px) {
+           margin-top: 5px;
+        }
+        .notification-title{
+            h2{
+                @include font40;
+                padding: 0 20px;
+                @media (max-width:576px) {
+                    font-size: 20px;
+                    line-height: normal;
+                }
+            }
+        }
+    }
+}

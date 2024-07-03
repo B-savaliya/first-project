@@ -1,0 +1,81 @@
+@import "../../../style/main.scss";
+
+.oredernotifiction{
+    max-width: 1200px ;
+    margin: 30px auto 0px auto;
+    @media (max-width:768px) {
+        padding: 0 20px;
+    }
+    .oredernotifiction-one{
+        background-color: var(--theme-secondbac);
+        width: 500px;
+        padding: 10px 20px  20px 20px;
+        border-radius: 30px;
+        margin: 20px 0;
+        @media (max-width:768px) {
+            width: 100%;
+        }
+        .oredernotifiction-one-first-child{
+            display: flex;
+            align-items: flex-start;
+            justify-content:space-between ;
+            .oredernotifiction-one-first-child-img{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                img{
+                    height: 45px;
+                    border-radius: 50px;
+                    width: 45px;
+                    @media (max-width:576px) {
+                        height: 30px;
+                        width: 30px;
+                    }
+                }
+                p{
+                    @include font16;
+                    @media (max-width:576px) {
+                        font-size: 12px;
+                    }
+                }
+            }
+            .oredernotifiction-one-first-child-close{
+                img{
+                    height: 15px;
+                    width: 15px;
+                    cursor: pointer;
+                }
+            }
+        }
+        .oredernotifiction-one-last-child{
+            padding-top: 20px;
+            @media (max-width:576px) {
+                padding-top: 10px;
+            }
+            h5{
+                @include font22;
+                font-family: "Roboto", sans-serif;
+                @media (max-width:576px) {
+                    font-size: 16px;
+                }
+            }
+            .oredernotifiction-one-last-child-second-detail{
+                display: flex;
+                justify-content: space-between;
+                p{
+                    color: var(--theme-gray);
+                    @media (max-width:576px) {
+                        font-size: 12px;
+                    }
+                }
+                span{
+                    display: block;
+                    cursor: pointer;
+                    @media (max-width:576px) {
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
+}

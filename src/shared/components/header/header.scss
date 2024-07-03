@@ -1,0 +1,52 @@
+@import "../../../style/main.scss";
+
+header{
+    padding: 0 0 0 250px;
+    @media (max-width:776px) {
+        padding: 0;
+    }
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    width: 100%;
+    background-color: var(--theme-secondbac);
+    border-bottom: 1px solid var(--theme-gray-two);
+    .header-items{
+        display: flex;
+        justify-content: flex-end;
+        padding: 10px 30px 10px 0px;
+        .header-menuicon{
+            display: none;
+        }
+        .header-last-chail{
+            display: flex;
+            align-items: center;
+            gap: 0px 20px;
+            button{
+                background-color: var(--theme-white);
+                border: none;
+                padding: 11px 20px;
+                @include font18;
+                color: var(--theme-black);
+                border-radius: 30px;
+                @media (max-width:576px) {
+                    font-size: 10px;
+                    padding: 3px 15px;
+                }
+            }
+            .header-dp{
+                img{
+                    border-radius: 50%;
+                    width: 50px;
+                    height: 50px;
+                    object-fit: cover;
+                    @media (max-width:576px) {
+                        
+                        width: 30px;
+                        height: 30px;
+                    }
+                }
+            }
+        }
+    }
+}

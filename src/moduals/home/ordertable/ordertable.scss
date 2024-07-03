@@ -1,0 +1,70 @@
+@import "../../../style/main.scss";
+
+.ordertable{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 0;
+    @media (max-width:576px) {
+        display: none;
+    }
+    @media (max-width:768px) {
+        padding: 0 20px;
+    }
+    h4{
+        @include font28;
+        padding: 0 0 10px 0;
+    }
+    table{
+        width: 100%;
+        text-align: center;
+        tbody{
+            .table-row{
+                padding: 10px;
+                td{
+                    padding: 30px 0 10px 0;
+                    border-bottom: 1px solid var(--theme-gray);
+                    .table-img{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+                        img{
+                            width: 30px ;
+                            height: 30px;
+                        }
+                    }
+                    .table-status{
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        flex-direction: column;
+                        .accept{
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            background-color: rgb(255, 0, 0);
+                            border-radius: 12px;
+                            width: 60px;
+                            p{
+                                @include font10;
+                            }
+                        }
+                        .decline{
+                            margin-top: 5px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            background-color: rgb(86, 228, 86);
+                            border-radius: 12px;
+                            width: 60px;
+                            p{
+                                @include font10;
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+}
