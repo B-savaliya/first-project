@@ -8,8 +8,8 @@ function Home() {
     <div>
       This is home page
       {/* <Link to={"/blog"}> */}
-      <Button color={"red"} title={"red button"} />
-      <Button />
+      <Button color={"red"} title={"red button"} class={"redButton"} />
+      <Button class={"pinkButton"} />
       <Button color={"pink"} title={"pink button"} />
       <button onClick={() => navigate("/blog")}>click</button>
       <button onClick={() => navigate("/")}>go to home</button>
