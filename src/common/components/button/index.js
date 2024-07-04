@@ -6,6 +6,7 @@ function Button(props) {
     <button
       // style={{ backgroundColor: props.color || "cyan" }}
       className={props.class}
+      onClick={props.onClick}
     >
       {props.title || "Click me"}
     </button>

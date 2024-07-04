@@ -18,7 +18,7 @@ import Parent from "./components/parent";
 
 function App() {
   const parentData = blogData;
-  const test = false;
+  let test = false;
 
   const routeData = [
     {
