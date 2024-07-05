@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../../common/components/button";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 
@@ -6,6 +6,12 @@ function Home() {
   const navigate = useNavigate();
   const [count, setCount] = useState(0);
   const [recipes, setRecipes] = useState([]);
+  
+  useEffect(() => {
+    setRecipes([])
+    getRecipes()
+  }, [])
+  
   const getRecipes = () => {
     fetch("https://dummyjson.com/recipes")
       .then((res) => {
