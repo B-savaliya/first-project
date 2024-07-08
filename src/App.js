@@ -7,6 +7,7 @@ import BlogDetails from "./components/blogs/blogDetails";
 import ContactUs from "./components/contactus";
 import { blogData } from "./common/data";
 import Parent from "./components/parent";
+import Signup from "./components/signup";
 
 // Lifecycle of components
 // Mounting // On Load
@@ -50,6 +51,10 @@ function App() {
     {
       path: "/blog/blogdetails",
       element: <BlogDetails />,
+    },
+    {
+      path: "/register",
+      element: <Signup />,
     },
   ];
   const router = createBrowserRouter(routeData);

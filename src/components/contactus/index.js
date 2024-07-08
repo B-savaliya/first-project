@@ -5,12 +5,14 @@ function ContactUs(props) {
   const [clicked, setClicked] = useState(false);
   const [anotherState, setAnotherState] = useState(false);
   const [recipes, setRecipes] = useState([]);
+  console.log("contact us*******", recipes);
 
   useEffect(() => {
     getRecipes();
     return () => {
-      setRecipes([])
-    } // this will only be called on un mounting of this component
+      setRecipes([]);
+      console.log("contact us clean up fun call*******");
+    }; // this will only be called on un mounting of this component
   }, []);
 
   const getRecipes = () => {
