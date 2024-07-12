@@ -5,16 +5,22 @@ function Signup() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [error, setError] = useState({});
-  console.log("err*******", error);
+  const [errors, setErrors] = useState({});
 
   const submit = () => {
+    let error = {};
     if (firstName === "") {
-      setError({ fName: "* Please enter first name" });
+      error.fName = "* First name is required";
     }
     if (lastName === "") {
-      setError({ lName: "* Please enter last name" });
-    } else {
+      error.lName = "* Last name is required";
+    }
+    if (email === "") {
+      error.email = "* email is required";
+    }
+    setErrors(error);
+
+    if (errors.email === "" && errors.lName === "" && errors.fName === "") {
       localStorage.setItem(
         "user",
         JSON.stringify({
@@ -30,30 +36,39 @@ function Signup() {
     <div style={{ display: "flex", flexDirection: "column", width: "200px" }}>
       <label>
         First Name:{" "}
-        <span style={{ color: "red", fontSize: "10px" }}>{error.fName}</span>
+        <span style={{ color: "red", fontSize: "10px" }}>{errors.fName}</span>
       </label>
       <input
         id="fName"
         name="fName"
         onChange={(e) => {
           setFirstName(e.target.value);
-          setError("");
+          setErrors(Object.assign(errors, { fName: "" }));
         }}
       ></input>
       <label>
         Last Name:
-        <span style={{ color: "red", fontSize: "10px" }}>{error.lName}</span>
+        <span style={{ color: "red", fontSize: "10px" }}>{errors.lName}</span>
       </label>
       <input
         id="lName"
         name="lName"
-        onChange={(e) => setLastName(e.target.value)}
+        onChange={(e) => {
+          setLastName(e.target.value);
+          setErrors(Object.assign(errors, { lName: "" }));
+        }}
       ></input>
-      <label>Email:</label>
+      <label>
+        Email:
+        <span style={{ color: "red", fontSize: "10px" }}>{errors.email}</span>
+      </label>
       <input
         id="email"
         name="email"
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={(e) => {
+          setEmail(e.target.value);
+          setErrors(Object.assign(errors, { email: "" }));
+        }}
       ></input>
       <Button onClick={submit}></Button>
     </div>
