@@ -2,34 +2,35 @@ import React, { useState } from "react";
 import Button from "../../common/components/button";
 
 function Signup() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
+  const [userInfo, setUserInfo] = useState({});
   const [errors, setErrors] = useState({});
 
-  const submit = () => {
+  const handleSubmit = () => {
     let error = {};
-    if (firstName === "") {
+    if (userInfo.fName === "") {
       error.fName = "* First name is required";
     }
-    if (lastName === "") {
+    if (userInfo.lName === "") {
       error.lName = "* Last name is required";
     }
-    if (email === "") {
+    if (userInfo.email === "") {
       error.email = "* email is required";
     }
     setErrors(error);
 
-    if (errors.email === "" && errors.lName === "" && errors.fName === "") {
-      localStorage.setItem(
-        "user",
-        JSON.stringify({
-          fName: firstName,
-          lName: lastName,
-          email: email,
-        })
-      );
+    if (Object.keys(error).length <= 0) {
+      const userList = JSON.parse (localStorage.getItem('user')) || [];
+      userList.push(userInfo);
+      localStorage.setItem("user", JSON.stringify(userList));
+      setUserInfo({ fName: "", lName: "", email: "" });
     }
+  };
+
+  console.log("userInfo*****", userInfo);
+
+  const handleOnChange = (e) => {
+    const { name, value } = e.target;
+    setUserInfo({ ...userInfo, [name]: value });
   };
 
   return (
@@ -41,10 +42,8 @@ function Signup() {
       <input
         id="fName"
         name="fName"
-        onChange={(e) => {
-          setFirstName(e.target.value);
-          setErrors(Object.assign(errors, { fName: "" }));
-        }}
+        value={userInfo.fName}
+        onChange={handleOnChange}
       ></input>
       <label>
         Last Name:
@@ -53,10 +52,8 @@ function Signup() {
       <input
         id="lName"
         name="lName"
-        onChange={(e) => {
-          setLastName(e.target.value);
-          setErrors(Object.assign(errors, { lName: "" }));
-        }}
+        value={userInfo.lName}
+        onChange={handleOnChange}
       ></input>
       <label>
         Email:
@@ -65,12 +62,10 @@ function Signup() {
       <input
         id="email"
         name="email"
-        onChange={(e) => {
-          setEmail(e.target.value);
-          setErrors(Object.assign(errors, { email: "" }));
-        }}
+        value={userInfo.email}
+        onChange={handleOnChange}
       ></input>
-      <Button onClick={submit}></Button>
+      <Button title={"Submit"} onClick={handleSubmit}></Button>
     </div>
   );
 }
