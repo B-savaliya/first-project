@@ -9,6 +9,7 @@ import { blogData } from "./common/data";
 import Parent from "./components/parent";
 import Signup from "./components/signup";
 import Login from "./components/login";
+import Users from "./components/users";
 
 // Lifecycle of components
 // Mounting // On Load
@@ -60,6 +61,10 @@ function App() {
     {
       path: "/login",
       element: <Login />,
+    },
+    {
+      path: "/users",
+      element: <Users />,
     },
   ];
   const router = createBrowserRouter(routeData);
