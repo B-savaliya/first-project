@@ -1,4 +1,3 @@
-
 this is temporary change
 
 # Getting Startdded with Create React App
@@ -71,3 +70,59 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+[
+{
+$match:
+/\*\*
+
+- query: The query in MQL.
+  \*/
+  {
+  country_id: 101,
+  },
+  },
+  {
+  $group:
+  /\*\*
+- \_id: The id of the group.
+- fieldN: The first field name.
+  \*/
+  {
+  \_id: {
+  sname: "$state_name",
+sid: "$state_id",
+  },
+  count: {
+  $sum: 1,
+},
+ucitydata: {
+$addToSet: {
+  name: "$name",
+id: "$id",
+  },
+  },
+  citydata: {
+  $push: {
+name: "$name",
+  id: "$id",
+},
+},
+lcityname: {
+$last: "$name",
+},
+fcityname: {
+$first: "$name",
+},
+},
+},
+{
+$sort:
+  /\*\*
+- Provide any number of field/order pairs.
+  \*/
+  {
+  count: 1,
+  },
+  },
+  ]
