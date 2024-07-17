@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Button from "../../common/components/button";
 import { Link, Outlet, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const INCREMENT = "incement";
 const DECREMENT = "decrement";
 
 function Home() {
   const navigate = useNavigate();
+  const counter = useSelector((store) => store.common.counter);
   const [count, setCount] = useState({ state: INCREMENT, num: 0 });
   const [recipes, setRecipes] = useState([]);
 
@@ -30,7 +32,7 @@ function Home() {
   return (
     <div>
       {console.log("*******", count)}
-      <h1>This is home page, the count is: {count.num}</h1>
+      <h1>This is home page, the count is: {counter}</h1>
       <br />
       {/* <Link to={"/blog"}> */}
       <Button color={"red"} title={"red button"} class={"redButton"} />

@@ -10,6 +10,8 @@ import Parent from "./components/parent";
 import Signup from "./components/signup";
 import Login from "./components/login";
 import Users from "./components/users";
+import { Provider } from "react-redux";
+import store from "./lib/redux/store";
 
 // Lifecycle of components
 // Mounting // On Load
@@ -68,7 +70,9 @@ function App() {
     },
   ];
   const router = createBrowserRouter(routeData);
-  return <RouterProvider router={router} />;
+  return <Provider store={store}>
+   <RouterProvider router={router} />;
+  </Provider>
 }
 
 export default App;
