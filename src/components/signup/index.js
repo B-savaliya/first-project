@@ -1,13 +1,22 @@
 import React, { useState } from "react";
 import Button from "../../common/components/button";
+import { useSearchParams } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 function Signup() {
-  const [userInfo, setUserInfo] = useState({
-    fName: "",
-    lName: "",
-    email: "",
-    password: "",
-  });
+  const [params] = useSearchParams();
+  const editId = params.get("editId");
+
+  const storedUsers = JSON.parse(localStorage.getItem("user"));
+
+  const [userInfo, setUserInfo] = useState(
+    storedUsers[Number(editId) - 1] || {
+      fName: "",
+      lName: "",
+      email: "",
+      password: "",
+    }
+  );
   const [errors, setErrors] = useState({});
 
   const isValidateForm = () => {
@@ -21,6 +30,9 @@ function Signup() {
       error.lName = "* Last name is required";
       formIsValid = false;
     }
+    const exp =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    console.log("******", exp.test(userInfo?.email));
     if (!userInfo.email || userInfo?.email.trim() === "") {
       error.email = "* email is required";
       formIsValid = false;
@@ -36,7 +48,7 @@ function Signup() {
   const handleSubmit = () => {
     if (isValidateForm()) {
       const userList = JSON.parse(localStorage.getItem("user")) || [];
-      userList.push(userInfo);
+      userList.push({ ...userInfo, id: uuidv4() });
       localStorage.setItem("user", JSON.stringify(userList));
       setUserInfo({ fName: "", lName: "", email: "", password: "" });
     }
@@ -96,7 +108,7 @@ function Signup() {
         value={userInfo?.password}
         onChange={handleOnChange}
       />
-      <Button title={"Submit"} onClick={handleSubmit}></Button>
+      <Button title={editId ? "Update":"Submit"} onClick={handleSubmit}></Button>
     </div>
   );
 }

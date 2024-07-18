@@ -1,7 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function Users() {
   const userList = JSON.parse(localStorage.getItem("user"));
+  console.log("***", userList);
+  const navigate = useNavigate();
+
+  const handleEdit = (index) => {
+    navigate(`/register?editId=${index + 1}`);
+  };
   return (
     <table>
       {userList?.length > 0 ? (
@@ -16,7 +23,7 @@ function Users() {
               {Object.values(el).map((subEl, subIndex) => (
                 <td key={subIndex}>{subEl}</td>
               ))}
-              <button>Edit</button>
+              <button onClick={() => handleEdit(i)}>Edit</button>
             </tr>
           ))}
         </>
