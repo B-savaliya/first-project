@@ -48,8 +48,14 @@ function Signup() {
   const handleSubmit = () => {
     if (isValidateForm()) {
       const userList = JSON.parse(localStorage.getItem("user")) || [];
-      userList.push({ ...userInfo, id: uuidv4() });
-      localStorage.setItem("user", JSON.stringify(userList));
+      if (editId) {
+        userList.splice(editId - 1, 1, userInfo);
+        // userList.map((el, i) => (editId - 1 === i ? userInfo : el))
+        localStorage.setItem("user", JSON.stringify(userList));
+      } else {
+        userList.push({ ...userInfo, id: uuidv4() });
+        localStorage.setItem("user", JSON.stringify(userList));
+      }
       setUserInfo({ fName: "", lName: "", email: "", password: "" });
     }
   };
@@ -108,7 +114,10 @@ function Signup() {
         value={userInfo?.password}
         onChange={handleOnChange}
       />
-      <Button title={editId ? "Update":"Submit"} onClick={handleSubmit}></Button>
+      <Button
+        title={editId ? "Update" : "Submit"}
+        onClick={handleSubmit}
+      ></Button>
     </div>
   );
 }
