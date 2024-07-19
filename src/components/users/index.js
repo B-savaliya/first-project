@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getUsers } from "../../lib/redux/reducers/common";
 
 function Users() {
   const userList = JSON.parse(localStorage.getItem("user"));
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getUsers())
+  }, [])
+  
   return (
     <table>
       {userList?.length > 0 ? (
