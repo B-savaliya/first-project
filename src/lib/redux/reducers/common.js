@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
 
 // First, create the thunk
 export const getUsers = createAsyncThunk("common/getUsers", async () => {
-  console.log('api thunk call***');
+  console.log("api thunk call***");
   const response = await fetch("https://jsonplaceholder.typicode.com/users");
   const data = await response.json();
   return data;
@@ -11,7 +11,7 @@ export const getUsers = createAsyncThunk("common/getUsers", async () => {
 const CommonSlice = createSlice({
   name: "common",
   initialState: {
-    loading: 'init',
+    loading: "init",
     counter: 0,
     users: [],
   },
@@ -27,19 +27,19 @@ const CommonSlice = createSlice({
     // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(getUsers.pending, (state, action) => {
       // Add user to the state array
-      console.log('api call pending***');
-      state.loading = 'pending';
+      console.log("api call pending***");
+      state.loading = "pending";
     });
     builder.addCase(getUsers.fulfilled, (state, action) => {
       // Add user to the state array
-      console.log('api call fulfilled***');
-      state.loading = 'fulfilled'
-      state.users = action.payload
+      console.log("api call fulfilled***");
+      state.loading = "fulfilled";
+      state.users = action.payload;
     });
     builder.addCase(getUsers.rejected, (state, action) => {
       // Add user to the state array
-      console.log('api call rejected***');
-      state.loading = 'rejected'
+      console.log("api call rejected***");
+      state.loading = "rejected";
     });
   },
 });

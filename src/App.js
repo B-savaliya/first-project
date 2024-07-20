@@ -12,6 +12,8 @@ import Login from "./components/login";
 import Users from "./components/users";
 import { Provider } from "react-redux";
 import store from "./lib/redux/store";
+import { ApolloProvider } from "@apollo/client";
+import client from "./apolloClient.js";
 
 // Lifecycle of components
 // Mounting // On Load
@@ -70,9 +72,13 @@ function App() {
     },
   ];
   const router = createBrowserRouter(routeData);
-  return <Provider store={store}>
-   <RouterProvider router={router} />;
-  </Provider>
+  return (
+    <ApolloProvider client={client}>
+      <Provider store={store}>
+        <RouterProvider router={router} />;
+      </Provider>
+    </ApolloProvider>
+  );
 }
 
 export default App;
