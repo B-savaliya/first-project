@@ -10,6 +10,9 @@ import Parent from "./components/parent";
 import Signup from "./components/signup";
 import Login from "./components/login";
 import Users from "./components/users";
+import MainComp from "./components/mainComp";
+import MyContext from "./myContext";
+import { useEffect, useState } from "react";
 
 // Lifecycle of components
 // Mounting // On Load
@@ -22,6 +25,7 @@ import Users from "./components/users";
 function App() {
   const parentData = blogData;
   let test = false;
+  const [details, setDetails] = useState([]);
 
   const routeData = [
     {
@@ -66,9 +70,23 @@ function App() {
       path: "/users",
       element: <Users />,
     },
+    {
+      path: "/mainComp",
+      element: <MainComp />,
+    },
   ];
   const router = createBrowserRouter(routeData);
-  return <RouterProvider router={router} />;
+  useEffect(() => {
+    setDetails('data')
+  }, [])
+  
+  return (
+    <>
+    <MyContext.Provider value={{ details, setDetails }}>
+      <RouterProvider router={router} />;
+    </MyContext.Provider>
+    </>
+  );
 }
 
 export default App;
