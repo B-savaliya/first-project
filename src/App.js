@@ -13,6 +13,7 @@ import Users from "./components/users";
 import MainComp from "./components/mainComp";
 import MyContext from "./myContext";
 import { useEffect, useState } from "react";
+import UseRefComp from "./components/RefComp";
 
 // Lifecycle of components
 // Mounting // On Load
@@ -74,13 +75,17 @@ function App() {
       path: "/mainComp",
       element: <MainComp />,
     },
+    {
+      path: "useRef",
+      element: <UseRefComp />,
+    },
   ];
   const router = createBrowserRouter(routeData);
 
   return (
     <>
       <MyContext.Provider value={{ details, setDetails }}>
-        <RouterProvider router={router} />;
+        <RouterProvider router={router} />
       </MyContext.Provider>
     </>
   );

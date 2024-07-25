@@ -26,6 +26,12 @@ function Login() {
       alert("user not found");
     }
   };
+  const handleOnKeyDown = (e) => {
+    console.log("eeeeee*****", e);
+    if (e.keyCode === 13) {
+      handleSubmit();
+    }
+  };
   return (
     <div style={{ display: "flex", flexDirection: "column", width: "200px" }}>
       <label>Email:</label>
@@ -38,6 +44,7 @@ function Login() {
       <input
         id="password"
         name="password"
+        onKeyDown={(e) => handleOnKeyDown(e)}
         onChange={(e) => handleOnChange(e)}
       ></input>
       <Button title={"Login"} onClick={handleSubmit}></Button>
