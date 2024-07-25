@@ -2,20 +2,18 @@ import React, { useContext, useEffect } from "react";
 import MyContext from "../../../../myContext";
 
 function Three() {
-    const context = useContext(MyContext)
-    console.log('context******', context);
+  const context = useContext(MyContext);
+  console.log("comp_three******", context);
   const data = [
     {
-      name: "data 1",
+      name: "dfgdgsdgfdgdfgs",
     },
   ];
 
   useEffect(() => {
-    context.setDetails(data)
-  }, [])
-  
+    context.setDetails(data);
+  }, []);
 
-  
   return (
     <div>
       Three

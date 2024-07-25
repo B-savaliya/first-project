@@ -76,15 +76,12 @@ function App() {
     },
   ];
   const router = createBrowserRouter(routeData);
-  useEffect(() => {
-    setDetails('data')
-  }, [])
-  
+
   return (
     <>
-    <MyContext.Provider value={{ details, setDetails }}>
-      <RouterProvider router={router} />;
-    </MyContext.Provider>
+      <MyContext.Provider value={{ details, setDetails }}>
+        <RouterProvider router={router} />;
+      </MyContext.Provider>
     </>
   );
 }
