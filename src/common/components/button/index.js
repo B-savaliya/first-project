@@ -1,7 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import "./button.css";
 
-function Button(props) {
+const Button = (props) => {
+  console.log("button re-rendering*****");
   return (
     <button
       // style={{ backgroundColor: props.color || "cyan" }}
@@ -11,6 +12,9 @@ function Button(props) {
       {props.title || "Click me"}
     </button>
   );
-}
+};
 
-export default Button;
+export default memo(Button);
+
+// Higher order function
+// Higher order component

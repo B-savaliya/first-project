@@ -4,7 +4,7 @@ import "./App.css";
 import Layout from "./components/home";
 import Blogs from "./components/blogs";
 import BlogDetails from "./components/blogs/blogDetails";
-import ContactUs from "./components/contactus";
+// import ContactUs from "./components/contactus";
 import { blogData } from "./common/data";
 import Parent from "./components/parent";
 import Signup from "./components/signup";
@@ -12,8 +12,10 @@ import Login from "./components/login";
 import Users from "./components/users";
 import MainComp from "./components/mainComp";
 import MyContext from "./myContext";
-import { useEffect, useState } from "react";
+import { lazy, useEffect, useState } from "react";
 import UseRefComp from "./components/RefComp";
+import UseMemoComp from "./components/memoComp";
+const ContactUs = lazy(() => import("./components/contactus"));
 
 // Lifecycle of components
 // Mounting // On Load
@@ -78,6 +80,10 @@ function App() {
     {
       path: "useRef",
       element: <UseRefComp />,
+    },
+    {
+      path: "useMemo",
+      element: <UseMemoComp />,
     },
   ];
   const router = createBrowserRouter(routeData);
