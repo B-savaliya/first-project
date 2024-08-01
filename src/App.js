@@ -15,6 +15,8 @@ import MyContext from "./myContext";
 import { lazy, useEffect, useState } from "react";
 import UseRefComp from "./components/RefComp";
 import UseMemoComp from "./components/memoComp";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 const ContactUs = lazy(() => import("./components/contactus"));
 
 // Lifecycle of components
@@ -90,9 +92,11 @@ function App() {
 
   return (
     <>
-      <MyContext.Provider value={{ details, setDetails }}>
-        <RouterProvider router={router} />
-      </MyContext.Provider>
+      <Provider store={store}>
+        <MyContext.Provider value={{ details, setDetails }}>
+          <RouterProvider router={router} />
+        </MyContext.Provider>
+      </Provider>
     </>
   );
 }
