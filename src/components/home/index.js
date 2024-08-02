@@ -11,7 +11,7 @@ const DECREMENT = "decrement";
 // useDispatch
 
 function Home() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [count, setCount] = useState({ state: INCREMENT, num: 0 });
   const [recipes, setRecipes] = useState([]);
@@ -37,9 +37,8 @@ function Home() {
   };
 
   const handleClick = () => {
-    dispatch(increment())
-    
-  }
+    dispatch(increment(4));
+  };
 
   return (
     <div>
@@ -47,7 +46,12 @@ function Home() {
       <h1>This is home page, the count is: {counter}</h1>
       <br />
       {/* <Link to={"/blog"}> */}
-      <Button color={"red"} title={"red button"} class={"redButton"} onClick={handleClick} />
+      <Button
+        color={"red"}
+        title={"red button"}
+        class={"redButton"}
+        onClick={handleClick}
+      />
       <Button
         class={"pinkButton"}
         onClick={() =>

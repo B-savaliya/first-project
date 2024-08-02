@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import Button from "../../common/components/button";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUserInfo } from "../../redux/reducers/authSlice";
 
 function Login() {
   const [credentials, setCredentials] = useState({});
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     const data = { ...credentials, [name]: value };
     setCredentials(data);
   };
-  console.log("credentials*****", credentials);
+  // console.log("credentials*****", credentials);
 
   const handleSubmit = () => {
     const usersList = JSON.parse(localStorage.getItem("user"));
@@ -21,6 +24,8 @@ function Login() {
           el.email === credentials.email && el.fName === credentials.password
       )
     ) {
+    dispatch(setUserInfo(credentials));
+
       navigate("/");
     } else {
       alert("user not found");

@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import "./button.css";
 
 const Button = (props) => {
-  console.log("button re-rendering*****");
+  // console.log("button re-rendering*****");
   return (
     <button
       // style={{ backgroundColor: props.color || "cyan" }}
