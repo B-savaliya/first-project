@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Button from "../../common/components/button";
+import axios from "axios";
+import instance, { ApiGet } from "../../api";
 
 function ContactUs(props) {
   const [clicked, setClicked] = useState(false);
@@ -15,14 +17,19 @@ function ContactUs(props) {
     }; // this will only be called on un mounting of this component
   }, []);
 
-  const getRecipes = () => {
-    fetch("https://dummyjson.com/recipes")
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        setRecipes(res.recipes);
-      });
+  const getRecipes = async () => {
+    let response = await ApiGet("/recipes");
+    console.log("response********", response);
+
+    setRecipes(response.data.recipes);
+
+    // fetch("https://dummyjson.com/recipes")
+    //   .then((res) => {
+    //     return res.json();
+    //   })
+    //   .then((res) => {
+    //     setRecipes(res.recipes);
+    //   });
   };
 
   return (
