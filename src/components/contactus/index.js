@@ -18,10 +18,13 @@ function ContactUs(props) {
   }, []);
 
   const getRecipes = async () => {
-    let response = await ApiGet("/recipes");
-    console.log("response********", response);
-
-    setRecipes(response.data.recipes);
+    try {
+      let response = await ApiGet("/recipes");
+      console.log("response********", response);
+      setRecipes(response.data.recipes);
+    } catch (error) {
+      console.log(error);
+    }
 
     // fetch("https://dummyjson.com/recipes")
     //   .then((res) => {

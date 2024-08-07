@@ -1,18 +1,39 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+
+export const getUsers = createAsyncThunk("auth/getUsers", async () => {
+  try {
+    let res = await axios.get("https://dummyjson.com/users");
+    return res;
+  } catch (error) {
+    return error.message;
+  }
+});
 
 const AuthSlice = createSlice({
   name: "auth",
   initialState: {
     userInfo: {},
+    loading: "init",
+    usersData: [],
   },
   reducers: {
     setUserInfo: (state, action) => {
-      console.log("action*******", action);
-
       state.userInfo = action.payload;
     },
   },
-  extraReducers: () => {},
+  extraReducers: (builder) => {
+    builder.addCase(getUsers.pending, (state) => {
+      state.loading = "loading";
+    });
+    builder.addCase(getUsers.fulfilled, (state, action) => {
+      state.loading = "fulfilled";
+      state.usersData = action.payload.data.users;
+    });
+    builder.addCase(getUsers.rejected, (state) => {
+      state.loading = "rejected";
+    });
+  },
 });
 
 export const { setUserInfo } = AuthSlice.actions;

@@ -7,8 +7,8 @@ const counterSlice = createSlice({
     fName: "Bhaumik",
   },
   reducers: {
-    increment: (state, action) => {
-      state.value += action.payload;
+    increment: (state) => {
+      state.value += 1;
     },
   },
   extraReducers: () => {},

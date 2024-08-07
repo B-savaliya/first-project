@@ -33,11 +33,12 @@ function Home() {
       })
       .then((res) => {
         setRecipes(res.recipes);
-      });
+      })
+      .catch((err) => console.log(err));
   };
 
   const handleClick = () => {
-    dispatch(increment(4));
+    dispatch(increment());
   };
 
   return (

@@ -1,8 +1,13 @@
 import React, { forwardRef, useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getUsers } from "../../redux/reducers/authSlice";
 
 function UseRefComp() {
   const myRef = useRef({});
   const inputRef = useRef({});
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.auth.usersData);
+  console.log("data******", data);
 
   useEffect(() => {
     myRef.current.style.color = "red";
@@ -17,6 +22,10 @@ function UseRefComp() {
   const handleClick = () => {
     console.log("ref_value********", inputRef.current);
   };
+
+  useEffect(() => {
+    dispatch(getUsers());
+  }, []);
 
   return (
     <div>
