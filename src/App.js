@@ -17,6 +17,9 @@ import UseRefComp from "./components/RefComp";
 import UseMemoComp from "./components/memoComp";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import { ApolloProvider } from "@apollo/client";
+import client from "./graphQL/client";
+import GraphQlComp from "./components/GraphQlComp";
 const ContactUs = lazy(() => import("./components/contactus"));
 
 // Lifecycle of components
@@ -87,6 +90,10 @@ function App() {
       path: "useMemo",
       element: <UseMemoComp />,
     },
+    {
+      path: "graphql",
+      element: <GraphQlComp />,
+    },
   ];
   const router = createBrowserRouter(routeData);
 
@@ -94,7 +101,9 @@ function App() {
     <>
       <Provider store={store}>
         <MyContext.Provider value={{ details, setDetails }}>
-          <RouterProvider router={router} />
+          <ApolloProvider client={client}>
+            <RouterProvider router={router} />
+          </ApolloProvider>
         </MyContext.Provider>
       </Provider>
     </>

@@ -23,14 +23,15 @@ const AuthSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getUsers.pending, (state) => {
+    builder
+    .addCase(getUsers.pending, (state) => {
       state.loading = "loading";
-    });
-    builder.addCase(getUsers.fulfilled, (state, action) => {
+    })
+    .addCase(getUsers.fulfilled, (state, action) => {
       state.loading = "fulfilled";
       state.usersData = action.payload.data.users;
-    });
-    builder.addCase(getUsers.rejected, (state) => {
+    })
+    .addCase(getUsers.rejected, (state) => {
       state.loading = "rejected";
     });
   },
