@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Button from "../../common/components/button";
-import { useSearchParams } from "react-router-dom";
+import { redirect, useSearchParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
 function Signup() {
@@ -9,15 +9,22 @@ function Signup() {
 
   const storedUsers = JSON.parse(localStorage.getItem("user"));
 
+  if (window.location.pathname === 'register') {
+    redirect('/login')
+  }
+
   const [userInfo, setUserInfo] = useState(
-    storedUsers[Number(editId) - 1] || {
-      fName: "",
-      lName: "",
-      email: "",
-      password: "",
-    }
+    editId
+      ? storedUsers[Number(editId) - 1]
+      : {
+          fName: "",
+          lName: "",
+          email: "",
+          password: "",
+        }
   );
   const [errors, setErrors] = useState({});
+  const [profileImage, setProfileImage] = useState("");
 
   const isValidateForm = () => {
     let formIsValid = true;
@@ -62,6 +69,13 @@ function Signup() {
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
+
+    if (name === "profileImg") {
+      const img = e.target.files[0];
+      setProfileImage(URL.createObjectURL(img));
+      const formData = new FormData();
+      formData.append("profileImg", img);
+    }
     setUserInfo({ ...userInfo, [name]: value });
     setErrors({ ...errors, [name]: "" });
   };
@@ -114,6 +128,22 @@ function Signup() {
         value={userInfo?.password}
         onChange={handleOnChange}
       />
+      <input
+        id="profileImg"
+        type="file"
+        name="profileImg"
+        value={userInfo?.profileImg}
+        onChange={handleOnChange}
+      />
+      <span>
+        Profile:
+        <span style={{ color: "red", fontSize: "10px" }}>
+          {errors.profileImg}
+        </span>
+      </span>
+      <div style={{ height: "50px", width: "50px" }}>
+        <img src={profileImage} alt="profileImg" />
+      </div>
       <Button
         title={editId ? "Update" : "Submit"}
         onClick={handleSubmit}

@@ -20,6 +20,7 @@ import store from "./redux/store";
 import { ApolloProvider } from "@apollo/client";
 import client from "./graphQL/client";
 import GraphQlComp from "./components/GraphQlComp";
+import ProtectedRoute from "./common/ProtectedRoting";
 const ContactUs = lazy(() => import("./components/contactus"));
 
 // Lifecycle of components
@@ -71,12 +72,20 @@ function App() {
       element: <Signup />,
     },
     {
+      path: "/register/:id",
+      element: <Signup />,
+    },
+    {
       path: "/login",
       element: <Login />,
     },
     {
       path: "/users",
-      element: <Users />,
+      element: (
+        // <ProtectedRoute>
+        <Users />
+        // </ProtectedRoute>
+      ),
     },
     {
       path: "/mainComp",

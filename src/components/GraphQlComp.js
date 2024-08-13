@@ -1,4 +1,4 @@
-import { gql, useQuery } from "@apollo/client";
+import { gql, useMutation, useQuery } from "@apollo/client";
 import React from "react";
 
 const EXAMPLEQUERY = gql`
@@ -11,11 +11,20 @@ const EXAMPLEQUERY = gql`
   }
 `;
 
+const CreateMutation = gql`
+  mutation Login($email: String!) {
+    login(email: $email) {
+      token
+    }
+  }
+`;
+
 function GraphQlComp() {
-  const { loading, error, data } = useQuery(EXAMPLEQUERY);
+  // const { loading, error, data } = useQuery(EXAMPLEQUERY);
+  const [Login, { loading, error, data }] = useMutation(CreateMutation);
   console.log("****", loading, error, data);
 
-  return <div>Graph ql</div>;
+  return <div onClick={() => Login("abc@gmail.com")}>Graph ql</div>;
 }
 
 export default GraphQlComp;

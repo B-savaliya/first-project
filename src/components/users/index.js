@@ -3,8 +3,12 @@ import { useNavigate } from "react-router-dom";
 
 function Users() {
   const userList = JSON.parse(localStorage.getItem("user"));
-  const [renderedUserList, setRenderedUserList] = useState([]);
   const navigate = useNavigate();
+
+  if (!userList) {
+    navigate("/login");
+  }
+  const [renderedUserList, setRenderedUserList] = useState([]);
 
   useEffect(() => {
     setRenderedUserList(userList);
