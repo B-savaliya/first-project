@@ -1,17 +1,43 @@
-import React, { forwardRef, useEffect, useRef } from "react";
+import React, { forwardRef, useEffect, useReducer, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../../redux/reducers/authSlice";
+
+const initialArg = {
+  name: "",
+  count: 0,
+};
+
+const reducer = (state, action) => {
+  console.log("state****", state, "action*****", action);
+  switch (action.type) {
+    case "NAME_CHANGE":
+      return { ...state, name: action.request };
+
+    case "COUNT_CHANGE":
+      return { ...state, count: action.request };
+
+    default:
+      return state;
+  }
+};
 
 function UseRefComp() {
   const myRef = useRef({});
   const inputRef = useRef({});
   const dispatch = useDispatch();
   const data = useSelector((state) => state.auth.usersData);
-  console.log("data******", data);
+  const [localState, dispatcher] = useReducer(reducer, initialArg);
 
   useEffect(() => {
+    console.log(
+      "data******",
+      dispatcher({ type: "NAME_CHANGE", request: "testing" }),
+      dispatcher({ type: "COUNT_CHANGE", request: 6 })
+    );
     myRef.current.style.color = "red";
   }, []);
+
+  console.log("localState******", localState);
 
   const handleChange = (event) => {
     inputRef.current = {
